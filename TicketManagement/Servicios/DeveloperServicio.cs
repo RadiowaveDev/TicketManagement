@@ -26,10 +26,10 @@ namespace TicketManagement.Servicios
             Console.WriteLine("Edad del desarrollador: ");
             int edad = Convert.ToInt32(Console.ReadLine());
 
-            Console.WriteLine("Genero del desarrollador: ");
+            Console.WriteLine("Genero: (0)Masculino, (1)Femenino");
             Genero genero = (Genero)Convert.ToInt32(Console.ReadLine());
 
-            Console.WriteLine("¿Es senior developer?");
+            Console.WriteLine("¿Es senior developer?: true or false");
             bool seniority = Convert.ToBoolean(Console.ReadLine());
 
             Console.WriteLine("Rol del desarrollador: ");
@@ -39,6 +39,7 @@ namespace TicketManagement.Servicios
             {
                 Nombre = nombre,
                 Direccion = direccion,
+                DNI = DNI,
                 genero = genero,
                 Edad = edad,
                 role = role,
@@ -61,17 +62,26 @@ namespace TicketManagement.Servicios
             }
 
             Console.WriteLine("Lista de Developers: ");
-            Console.WriteLine("ID\tNombre\t\tDNI\t\tGenero\t\tEdad\tRole\tSeniority\t\tTickets");
-            Console.WriteLine("-------------------------------------");
-            foreach (var developer in developers)
+            Console.WriteLine("ID\tNombre\t\tDNI\t\tGenero\t\tEdad\tRol\t\tSeniority\tTickets");
+            Console.WriteLine("----------------------------------------------------------------------");
+            foreach (var dev in developers)
             {
-                Console.WriteLine($"{developer.Id}\t{developer.Nombre}\t{developer.DNI}\t{developer.genero}\t{developer.Edad}\t{developer.role}\t{developer.Seniority}\t{developer.Tickets}");
+                string ticketsCount = dev.Tickets?.Count.ToString() ?? "0";
+                Console.WriteLine($"{dev.Id}\t{dev.Nombre}\t{dev.DNI}\t{dev.genero}\t{dev.Edad}\t{dev.role}\t{dev.Seniority}\t\t{ticketsCount}");
             }
         }
 
         public void BuscarDeveloperPorId(SistemaTickets sistema)
         {
+            Console.WriteLine("\nMostrar Developers por Id: ");
+            Console.WriteLine("Ingresa el Id del Developer: ");
 
+            int id = int.Parse(Console.ReadLine());
+
+            var dev = sistema.ObtenerDeveloperPorId(id);
+            Console.WriteLine("ID\tNombre\t\tRol");
+            Console.WriteLine("-------------------------------------");
+            Console.WriteLine($"{dev.Id}\t{dev.Nombre}\t{dev.role}");
         }
     }
 }

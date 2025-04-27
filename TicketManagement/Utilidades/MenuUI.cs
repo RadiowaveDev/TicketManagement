@@ -107,6 +107,9 @@ namespace TicketManagement.Utilidades
                     case "2":
                         servicio2.ListarDesarrolladores(sistema);
                         break;
+                    case "3":
+                        servicio2.BuscarDeveloperPorId(sistema);
+                        break;
                     case "0":
                         comeback = true;
                         break;
@@ -135,10 +138,10 @@ namespace TicketManagement.Utilidades
                 switch (opcion)
                 {
                     case "1":
-                        //servicio.agregarTicket(sistema);
+                        //servicio3.agregarComentarios(sistema);
                         break;
                     case "2":
-                        //servicio.ListarTickets(sistema);
+                        //servicio3.ListarComentarios(sistema);
                         break;
                     case "0":
                         comeback = true;

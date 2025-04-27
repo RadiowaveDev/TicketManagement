@@ -45,5 +45,10 @@ namespace TicketManagement
         {
             return _developer.ToList();
         }
+
+        public Developer ObtenerDeveloperPorId(int id)
+        {
+            return _developer.FirstOrDefault(d => d.Id == id);
+        }
     }
 }

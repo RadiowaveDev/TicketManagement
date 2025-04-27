@@ -33,7 +33,7 @@ namespace TicketManagement.Utilidades
                 DNI = "35293847",
                 Edad = 32,
                 role = Role.QAEngineer,
-                Seniority = false,
+                Seniority = true,
                 Tickets = new List<Ticket>()
             };
 
@@ -76,7 +76,7 @@ namespace TicketManagement.Utilidades
                 Description = "Usuario no entiende instrucciones de pago",
                 Status = TicketStatus.Open,
                 priority = Priority.High,
-                Category = TicketCategory.ReporteDeErrores,
+                Category = TicketCategory.Facturacion,
                 ReportedBy = "Eder Valencia",
                 CreatedDate = DateTime.Now.AddDays(-3),
             };

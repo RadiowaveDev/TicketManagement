@@ -64,11 +64,11 @@ namespace TicketManagement.Servicios
             }
 
             Console.WriteLine("Lista de Tickets: ");
-            Console.WriteLine("ID\tTitulo\t\t\t\tDescripcion\t\t\t\tStatus\tPrioridad\tCategoria\tReportadoPor\tFechaReporte");
-            Console.WriteLine("-------------------------------------");
-            foreach (var ticket in tickets)
+            Console.WriteLine("ID\tTitulo\t\t\t\tDescripcion\t\t\t\tStatus\tPrioridad\tCategoria\tReportadoPor\tFechaReporte\tDeveloperAsignado");
+            Console.WriteLine("-----------------------------------------------------------------------------------------------------");
+            foreach (var t in tickets)
             {
-                Console.WriteLine($"{ticket.Id}\t{ticket.Title}\t\t{ticket.Description}\t{ticket.Status}\t{ticket.priority}\t{ticket.Category}\t{ticket.ReportedBy}\t{ticket.CreatedDate}");
+                Console.WriteLine($"{t.Id}\t{t.Title}\t\t{t.Description}\t{t.Status}\t{t.priority}\t{t.Category}\t{t.ReportedBy}\t{t.CreatedDate}\t{t.AssignedTo?.Nombre ?? "No asignado"}");
             }
         }
     }

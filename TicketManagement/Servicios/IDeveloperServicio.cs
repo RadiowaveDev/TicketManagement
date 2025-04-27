@@ -10,5 +10,6 @@ namespace TicketManagement.Servicios
     {
         void AgregarDesarrollador(SistemaTickets sistema);
         void ListarDesarrolladores(SistemaTickets sistema);
+        void BuscarDeveloperPorId(SistemaTickets sistema);
     }
 }
