@@ -10,7 +10,7 @@ namespace TicketManagement.Servicios
 {
     public class TicketServicio : ITicketServicio
     {
-        public void agregarTicket(SistemaTickets sistema)
+        public void AgregarTicket(SistemaTickets sistema)
         {
             Console.WriteLine("\nAgregar un nuevo Ticket: ");
 
@@ -34,6 +34,7 @@ namespace TicketManagement.Servicios
 
             DateTime createdDate = DateTime.Now.AddDays(-7);
             DateTime updateDate = DateTime.Now.AddDays(-3);
+            Developer dev = AsignarTicket(sistema);
 
             var ticket = new Ticket
             {
@@ -45,7 +46,7 @@ namespace TicketManagement.Servicios
                 ReportedBy = reportedBy,
                 CreatedDate = createdDate,
                 LastUpdated = updateDate,
-                AssignedTo = new Developer() { Nombre = "Hector Lavoe" }
+                AssignedTo = dev
             };
 
             sistema.AgregarTicket(ticket);
@@ -71,5 +72,83 @@ namespace TicketManagement.Servicios
                 Console.WriteLine($"{t.Id}\t{t.Title}\t\t{t.Description}\t{t.Status}\t{t.priority}\t{t.Category}\t{t.ReportedBy}\t{t.CreatedDate}\t{t.AssignedTo?.Nombre ?? "No asignado"}");
             }
         }
+
+        public void BuscarTicketPorId(SistemaTickets sistema)
+        {
+            Console.WriteLine("\nMostrar Ticket por Id: ");
+            Console.WriteLine("Ingresa el Id del Ticket: ");
+
+            int id = int.Parse(Console.ReadLine());
+            if (id <= 0)
+            {
+                throw new ArgumentException("Solo se almacenan valores de Id mayores a 0");
+            }
+            else
+            {
+                Ticket t = sistema.ObtenerTicketPorId(id);
+                Console.WriteLine("ID\tTitulo\t\tDeveloperAsignado");
+                Console.WriteLine("-------------------------------------");
+                Console.WriteLine($"{t.Id}\t{t.Title}\t");
+            }
+        }
+
+        public void ActualizarTicketStatus(SistemaTickets sistema)
+        {
+            Console.WriteLine("Ingresa el Id del Ticket: ");
+            int id = int.Parse(Console.ReadLine());
+
+            if (id <= 0)
+            {
+                throw new ArgumentException("Solo se almacenan valores de Id mayores a 0");
+            }
+            else
+            {
+                Ticket ticket = sistema.ObtenerTicketPorId(id);
+                Console.WriteLine("¿Cuál es el nuevo Estado del Ticket? (1)Abierto,(2)EnProgreso,(3)EnEspera,(4)Resuelto,(5)Cerrado,(6)ReAbierto");
+                TicketStatus status = (TicketStatus)Convert.ToInt32(Console.ReadLine());
+                ticket.Status = status;
+                Console.WriteLine("Estado del ticket actualizado");
+            }
+        }
+
+        public void EliminarTicket(SistemaTickets sistema)
+        {
+            Console.WriteLine("Ingresa el Id del Ticket: ");
+            int id = int.Parse(Console.ReadLine());
+
+            if (id <= 0)
+            {
+                throw new ArgumentException("Solo se almacenan valores de Id mayores a 0");
+            }
+            else
+            {
+                Ticket ticket = sistema.ObtenerTicketPorId(id);
+                Console.WriteLine($"¿Desea eliminar el registro del ticket {ticket.Title}? (S)/(N)");
+                char opcion = Convert.ToChar(Console.ReadLine());
+                if (opcion.Equals('S'))
+                {
+                    sistema.EliminarTicket(ticket);
+                    Console.WriteLine("Registro de ticket borrado");
+                }
+            }
+        }
+
+        public Developer AsignarTicket(SistemaTickets sistema)
+        {
+            Console.WriteLine("Ingresa el Id del developer asignado: ");
+            int id = int.Parse(Console.ReadLine());
+
+            if (id <= 0)
+            {
+                throw new ArgumentException("Solo se almacenan valores de Id mayores a 0");
+            }
+            else
+            {
+                var dev = sistema.ObtenerDeveloperPorId(id);
+                return dev;
+            }
+        }
+
+       
     }
 }

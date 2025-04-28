@@ -14,7 +14,10 @@ namespace TicketManagement.Utilidades
             bool exit = false;
             while (!exit)
             {
-                Console.WriteLine("--- Menu Principal: ---");
+                Console.Clear();
+                Console.WriteLine("  TICKET MANAGEMENT SYSTEM / SISTEMA DE GESTIÓN DE TICKETS   ");
+                Console.WriteLine("=========================================================\n");
+                Console.WriteLine("------ MENU PRINCIPAL: ------");
                 Console.WriteLine("1. Gestion de Tickets");
                 Console.WriteLine("2. Gestion de Desarrolladores");
                 Console.WriteLine("3. Gestion de Comentarios");
@@ -56,10 +59,12 @@ namespace TicketManagement.Utilidades
             while (!comeback)
             {
                 Console.WriteLine("\n--- Gestion de Tickets: ");
-                Console.WriteLine("Seleccione una opcion: ");
+                Console.WriteLine("Seleccione una opcion:\n ");
                 Console.WriteLine("1. Agregar nuevo ticket");
                 Console.WriteLine("2. Listar los tickets registrados");
-                Console.WriteLine("3. Buscar ticket por ticketID");
+                Console.WriteLine("3. Buscar ticket por Id");
+                Console.WriteLine("4. Actualizar estado del ticket");
+                Console.WriteLine("5. Eliminar registro de ticket");
                 Console.WriteLine("0. Volver atras");
 
                 ITicketServicio servicio1 = new TicketServicio();
@@ -68,10 +73,19 @@ namespace TicketManagement.Utilidades
                 switch (opcion)
                 {
                     case "1":
-                        servicio1.agregarTicket(sistema);
+                        servicio1.AgregarTicket(sistema);
                         break;
                     case "2":
                         servicio1.ListarTickets(sistema);
+                        break;
+                    case "3":
+                        servicio1.BuscarTicketPorId(sistema);
+                        break;
+                    case "4":
+                        servicio1.ActualizarTicketStatus(sistema);
+                        break;
+                    case "5":
+                        servicio1.EliminarTicket(sistema);
                         break;
                     case "0":
                         comeback= true;
@@ -90,10 +104,12 @@ namespace TicketManagement.Utilidades
             while (!comeback)
             {
                 Console.WriteLine("\n--- Gestion de Developers: ");
-                Console.WriteLine("Seleccione una opcion: ");
+                Console.WriteLine("Seleccione una opcion:\n ");
                 Console.WriteLine("1. Agregar nuevo developer");
                 Console.WriteLine("2. Listar los developers registrados");
-                Console.WriteLine("3. Buscar desarrollador por developerID");
+                Console.WriteLine("3. Buscar developer por ID");
+                Console.WriteLine("4. Actualizar Seniority");
+                Console.WriteLine("5. Eliminar registro de developer");
                 Console.WriteLine("0. Volver atras");
 
                 IDeveloperServicio servicio2 = new DeveloperServicio();
@@ -109,6 +125,12 @@ namespace TicketManagement.Utilidades
                         break;
                     case "3":
                         servicio2.BuscarDeveloperPorId(sistema);
+                        break;
+                    case "4":
+                        servicio2.ActualizarDeveloperSeniority(sistema);
+                        break;
+                    case "5":
+                        servicio2.EliminarDeveloper(sistema);
                         break;
                     case "0":
                         comeback = true;
@@ -126,7 +148,7 @@ namespace TicketManagement.Utilidades
             while (!comeback)
             {
                 Console.WriteLine("\n--- Gestion de Comentarios: ");
-                Console.WriteLine("Seleccione una opcion: ");
+                Console.WriteLine("Seleccione una opcion:\n ");
                 Console.WriteLine("1. Agregar nuevo comentario");
                 Console.WriteLine("2. Listar los comentarios registrados");
                 Console.WriteLine("3. Buscar comentario por comentarioID");
