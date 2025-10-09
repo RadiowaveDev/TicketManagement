@@ -4,39 +4,6 @@ Este proyecto es una aplicación de consola escrita en C#, diseñada para gestio
 
 ---
 
-## 🛠️ Arquitectura del Proyecto
-
-El proyecto está dividido en tres capas principales:
-
-SistemaTickets/
-│
-├── Modelo/
-│ ├── Persona.cs (abstract class)
-│ ├── Developer.cs
-│ ├── Ticket.cs
-│ ├── Comment.cs
-│ └── Enums/
-│ ├── Genero.cs
-│ ├── Priority.cs
-│ ├── Role.cs
-│ ├── TicketCategory.cs
-│ └── TicketStatus.cs
-│
-├── Service/
-│ ├── Interfaces/
-│ │ ├── IComentarioServicio.cs
-│ │ ├── IDeveloperServicio.cs
-│ │ └── ITicketServicio.cs
-│ └── Implementaciones/
-│ ├── ComentarioServicio.cs
-│ ├── DeveloperServicio.cs
-│ └── TicketServicio.cs
-│
-├── Utility/
-│ ├── SistemaTickets.cs
-│ └── Program.cs
----
-
 ## 🧠 Principales Características
 
 ### 📌 Gestión de Tickets
